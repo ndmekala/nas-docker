@@ -5,4 +5,5 @@ nextcloud/mysql_password.txt
 nextcloud/mysql_root_password.txt
 nextcloud/mysql_user.txt
 nextcloud/mysql_database.txt
+duplicati/config
 

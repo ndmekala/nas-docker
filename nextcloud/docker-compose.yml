@@ -29,6 +29,7 @@ services:
       - 8080:80
     links:
       - db
+      - redis
     volumes:
       - nextcloud:/var/www/html
       - /storage/Nextcloud:/storage
@@ -37,10 +38,18 @@ services:
       - MYSQL_DATABASE_FILE=/run/secrets/mysql_database
       - MYSQL_USER_FILE=/run/secrets/mysql_user
       - MYSQL_HOST=db
+      - REDIS_HOST=redis
     secrets:
       - mysql_password
       - mysql_database
       - mysql_user
+    depends_on:
+      - redis
+      - db
+
+  redis:
+    image: redis:latest
+    restart: always
 
 secrets:
   mysql_root_password:
